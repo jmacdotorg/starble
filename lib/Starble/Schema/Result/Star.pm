@@ -45,19 +45,6 @@ __PACKAGE__->table("star");
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 ip
-
-  data_type: 'char'
-  default_value: (empty string)
-  is_nullable: 1
-  size: 64
-
-=head2 time
-
-  data_type: 'datetime'
-  datetime_undef_if_invalid: 1
-  is_nullable: 0
-
 =head2 thing
 
   data_type: 'integer'
@@ -81,14 +68,6 @@ __PACKAGE__->add_columns(
     data_type => "integer",
     extra => { unsigned => 1 },
     is_auto_increment => 1,
-    is_nullable => 0,
-  },
-  "ip",
-  { data_type => "char", default_value => "", is_nullable => 1, size => 64 },
-  "time",
-  {
-    data_type => "datetime",
-    datetime_undef_if_invalid => 1,
     is_nullable => 0,
   },
   "thing",
@@ -153,8 +132,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07043 @ 2015-10-30 22:06:24
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:OkqUJkPVR6jf5Vcokomceg
+# Created by DBIx::Class::Schema::Loader v0.07043 @ 2015-11-01 12:45:57
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:LNr/4WXp2vslHpInfjA7Qg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

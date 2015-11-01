@@ -10,8 +10,6 @@ sub toggle_star {
     my $self = shift;
     my ( $thing_uri, $session_id ) = @_;
 
-    my $now = DateTime->now( time_zone => 'UTC' );
-
     my $thing = $self->find_or_create(
         { uri => $thing_uri },
         { key => 'uri' },
@@ -28,7 +26,6 @@ sub toggle_star {
     }
     else {
         my $star = $thing->add_to_stars( {
-            time => $now,
             session => $session_id,
         } );
     }
