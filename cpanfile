@@ -1,0 +1,13 @@
+requires "Catalyst::Runtime";
+requires "Catalyst::Plugin::Authentication";
+requires "Catalyst::Plugin::Session";
+requires "Catalyst::Plugin::Session::Store::DBIC";
+requires "Catalyst::Plugin::Session::State::Cookie";
+requires "Catalyst::View::JSON";
+requires "DateTime";
+requires "DBD::SQLite";
+requires "DBIx::Class";
+requires "Daemon::Control";
+requires "JSON::XS";
+requires "Starman";
+requires "URI::Escape";

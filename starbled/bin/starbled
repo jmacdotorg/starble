@@ -1,0 +1,62 @@
+#!/usr/bin/env perl
+
+use warnings;
+use strict;
+
+use Daemon::Control;
+use Getopt::Long;
+use FindBin;
+use Config::General;
+
+my %options;
+GetOptions( \%options, 'config=s', );
+
+my $config_path = $options{ config } || "$FindBin::Bin/../conf/ciderctl.conf";
+if (
+    ( $options{ config } && not( -r $config_path ) )
+    ||
+    ( -e $config_path && not( -r $config_path ) )
+) {
+    die "ERROR: Can't read config file at $config_path: $!\n";
+}
+
+my %config;
+if ( -e $config_path ) {
+    %config = Config::General->new( $config_path )->getall;
+}
+
+$config{name}       ||= 'Starble';
+$config{desc}       ||= 'Starble, a webservice for attaching stars to things';
+$config{port}       ||= 5000;
+$config{access_log} ||= "$FindBin::Bin/../log/access.log";
+$config{stderr}     ||= "$FindBin::Bin/../log/error.log";
+$config{pidfile}    ||= "$FindBin::Bin/../run/starbled.pid";
+$config{workers}    ||= 5;
+
+my %user_config = ();
+foreach ( qw( user group ) ) {
+    $user_config{$_} = $config{$_} if $config{$_};
+}
+
+Daemon::Control->new(
+    {
+        name      => $config{name},
+        lsb_start => '$syslog $remote_fs',
+        lsb_stop  => '$syslog',
+        lsb_sdesc => $config{name},
+        lsb_desc  => $config{desc},
+
+        program      => 'starman',
+        program_args => [ '--workers', $config{workers},
+			  '--port', $config{port},
+			  '--access-log', $config{access_log},
+			  "$FindBin::Bin/../../starble.psgi"
+	    ],
+
+        %user_config,
+
+        pid_file    => $config{pidfile},
+        stderr_file => $config{stderr},
+
+    }
+)->run;
