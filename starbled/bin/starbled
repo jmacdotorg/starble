@@ -11,7 +11,7 @@ use Config::General;
 my %options;
 GetOptions( \%options, 'config=s', );
 
-my $config_path = $options{ config } || "$FindBin::Bin/../conf/ciderctl.conf";
+my $config_path = $options{ config } || "$FindBin::Bin/../conf/starbled.conf";
 if (
     ( $options{ config } && not( -r $config_path ) )
     ||
