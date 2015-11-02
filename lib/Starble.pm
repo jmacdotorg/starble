@@ -51,6 +51,10 @@ __PACKAGE__->config(
         'expose_stash' => [ qw/ result uri / ],
     },
 
+    'Model::StarbleDB' => {
+        schema_class => 'Starble::Schema',
+    },
+
     'Plugin::Authentication' => {
         default_realm => "default",
         default => {
@@ -69,7 +73,6 @@ __PACKAGE__->config(
             },
         },
     },
-
 
     'Plugin::Session' => {
         'expires' => 31536000, # Year

@@ -26,9 +26,11 @@ Furthermore, I can't offer much guidance right now about how one should configur
    
 1. Use the file `sql/starble.sql` to create an empty Starble database. (That's a MySQL dump file. Modify as needed.)
 
+1. Copy `starble-dist.conf` to `starble.conf` and then update that new file's database connection information as needed. (Some knowledge of [DBI connection syntax](https://metacpan.org/pod/DBI#connect) might come in handy here.)
+
 1. In the directory `starbled/conf/`, copy `starbled-conf.dist` to `starbled.conf`, and then season to taste.
 
-1. Run this command to start Starbled:
+1. Run this command to start the Starble daemon:
 
         starbled/bin/starbled start
 
