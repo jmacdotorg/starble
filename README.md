@@ -75,3 +75,7 @@ In all the below endpoints:
 * **I can think of a number of JavaScript-based exploits that will cause a thing's star count to rise artificially!**
 
     I'm sure you can. Given Starble's scope and purpose, I do not find that this possibility bothers me greatly.
+
+## Author
+
+Jason McIntosh (jmac@jmac.org)
