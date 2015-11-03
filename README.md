@@ -24,11 +24,11 @@ Furthermore, I can't offer much guidance right now about how one should configur
 
         curl -fsSL https://cpanmin.us | perl - --installdeps .
    
-1. Use the file `sql/starble.sql` to create an empty Starble database. (That's a MySQL dump file. Modify as needed.)
+1. If you don't want to use the provided SQLite file (in `db/starble.db`) as Starble's database, use the file `db/sql/starble.sql` to create an empty Starble database elsewhere. (That's a MySQL dump file; modify as needed.)
 
 1. Copy `starble-dist.conf` to `starble.conf` and then update that new file's database connection information as needed.
 
-    If you're OK with using SQLite as Starble's database, then you can leave `starble.conf` unchanged. Otherwise, you'll need some knowledge of [DBI connection syntax](https://metacpan.org/pod/DBI#connect) to aim the configuration at any other database.
+    If you're OK with using SQLite as Starble's database, then you can leave `starble.conf` unchanged; it already points to the provided SQLite DB file. Otherwise, you'll need some knowledge of [DBI connection syntax](https://metacpan.org/pod/DBI#connect) to aim the configuration at any other database.
 
 1. In the directory `starbled/conf/`, copy `starbled-conf.dist` to `starbled.conf`, and then season to taste.
 
