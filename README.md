@@ -46,27 +46,27 @@ Sadly, I cannot at this time provide instructions about how to do anything inter
 
 In all the below endpoints:
 
-* _Thing_ can be any globally unique identifier, such as a URI or a GUID.
+* _[Thing]_ is the [GUID](https://en.wikipedia.org/wiki/Globally_unique_identifier) of the thing you want to attach a star to. Providing any value besides a well-formed GUID results in an error.
 
 * The return value is a JSON hashtable containing two keys:
 
     * `result`: The result of the query. Either informational (e.g. with the **count** encpoint, or 1/0 for success/failure.
     
-    * `uri`: The ID of the thing in question. (Always the same as the one in the request.)
+    * `guid`: The GUID of the thing in question. (Always the same as the one in the request.)
     
 * "The current user" is determined via a simple cookie-based session, and requires no additional API-level information to work.
     
 ### API endpoints
 
-* **/star/count?thing=*thing***
+* **/star/count?thing=[thing]**
 
     The number of stars attached to the given thing.
     
-* **/star/check?thing=*thing***
+* **/star/check?thing=[thing]**
 
     Whether the current user appears to have already starred this thing.
     
-* **/star/toggle?thing=*thing***
+* **/star/toggle?thing=[thing]**
 
     If the user has not starred this thing, star it for this user. Otherwise, unstar it for this user.
 
