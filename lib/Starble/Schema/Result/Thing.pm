@@ -45,12 +45,12 @@ __PACKAGE__->table("thing");
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 uri
+=head2 guid
 
   data_type: 'char'
   default_value: (empty string)
   is_nullable: 0
-  size: 128
+  size: 36
 
 =cut
 
@@ -62,8 +62,8 @@ __PACKAGE__->add_columns(
     is_auto_increment => 1,
     is_nullable => 0,
   },
-  "uri",
-  { data_type => "char", default_value => "", is_nullable => 0, size => 128 },
+  "guid",
+  { data_type => "char", default_value => "", is_nullable => 0, size => 36 },
 );
 
 =head1 PRIMARY KEY
@@ -80,17 +80,17 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 UNIQUE CONSTRAINTS
 
-=head2 C<uri>
+=head2 C<guid>
 
 =over 4
 
-=item * L</uri>
+=item * L</guid>
 
 =back
 
 =cut
 
-__PACKAGE__->add_unique_constraint("uri", ["uri"]);
+__PACKAGE__->add_unique_constraint("guid", ["guid"]);
 
 =head1 RELATIONS
 
@@ -110,8 +110,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07043 @ 2015-10-28 00:51:22
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:2qfz7qvZPRIXzCJRcHryWg
+# Created by DBIx::Class::Schema::Loader v0.07043 @ 2015-11-03 11:27:19
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:A2OF9/HOxUBZccF1khhwEQ
 
 use DateTime;
 

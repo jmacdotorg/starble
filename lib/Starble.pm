@@ -48,7 +48,7 @@ __PACKAGE__->config(
     enable_catalyst_header => 1, # Send X-Catalyst header
 
     'View::JSON' => {
-        'expose_stash' => [ qw/ result uri / ],
+        'expose_stash' => [ qw/ result guid / ],
     },
 
     'Model::StarbleDB' => {

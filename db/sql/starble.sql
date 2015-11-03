@@ -60,9 +60,9 @@ DROP TABLE IF EXISTS `thing`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `thing` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `uri` char(128) NOT NULL DEFAULT '',
+  `guid` char(36) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `uri` (`uri`)
+  UNIQUE KEY `guid` (`guid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

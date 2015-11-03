@@ -1,7 +1,8 @@
 package Starble::Controller::Star;
 use Moose;
 use namespace::autoclean;
-use URI::Escape;
+use Data::GUID;
+use Try::Tiny;
 
 BEGIN { extends 'Catalyst::Controller'; }
 
@@ -19,22 +20,30 @@ Catalyst Controller.
 sub get_thing :Chained('/') :PathPart('star') :CaptureArgs(0) {
     my ( $self, $c ) = @_;
 
-    my $thing_uri = $c->req->params->{ thing };
+    my $thing_guid = $c->req->params->{ thing };
 
-    unless ( $thing_uri ) {
+    unless ( $thing_guid ) {
         $c->res->code( '400' );
-        $c->res->content( 'No "thing" argument found in query.' );
+        $c->res->body( 'No "thing" argument found in query.' );
         $c->detach;
         return;
     }
 
-    $thing_uri = uri_unescape( $thing_uri );
+    try {
+        $thing_guid = Data::GUID->from_string( $thing_guid );
+    }
+    catch {
+        $c->res->code( '400' );
+        $c->res->body( 'The "thing" argument is not a well-formed GUID.' );
+        $c->detach;
+        return;
+    };
 
-    my $thing = $c->model( 'StarbleDB::Thing' )->find( $thing_uri, { key => 'uri' } );
+    my $thing = $c->model( 'StarbleDB::Thing' )->find( $thing_guid, { key => 'guid' } );
 
     $c->stash->{ thing } = $thing;
-    $c->stash->{ thing_uri } = $thing_uri;
-    $c->stash->{ uri } = $thing_uri;
+    $c->stash->{ thing_guid } = $thing_guid;
+    $c->stash->{ guid } = $thing_guid->as_string;
 
     unless ( $c->user ) {
        $c->authenticate( { username => 'starble', password => 'starble' } );
@@ -73,7 +82,7 @@ sub toggle :Chained('get_thing') :Args(0) {
     my ( $self, $c ) = @_;
 
     $c->model( 'StarbleDB::Thing' )->toggle_star(
-        $c->stash->{ thing_uri },
+        $c->stash->{ thing_guid },
         $c->sessionid,
     );
 

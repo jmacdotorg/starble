@@ -28,10 +28,10 @@ sub init_schema {
     $schema->populate(
         'Thing',
         [
-            [qw/id uri/],
-            [1, 'http://example.com/foo', ],
-            [2, 'http://example.com/bar', ],
-            [3, 'http://example.com/baz', ],
+            [qw/id guid/],
+            [1, '343EE14A-8243-11E5-A92D-D7D8146448B6', ],
+            [2, '3449F292-8243-11E5-A92D-D7D8146448B6', ],
+            [3, '344AF962-8243-11E5-A92D-D7D8146448B6', ],
         ]
     );
 

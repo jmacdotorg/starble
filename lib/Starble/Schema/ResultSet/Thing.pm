@@ -8,11 +8,11 @@ extends 'DBIx::Class::ResultSet';
 
 sub toggle_star {
     my $self = shift;
-    my ( $thing_uri, $session_id ) = @_;
+    my ( $thing_guid, $session_id ) = @_;
 
     my $thing = $self->find_or_create(
-        { uri => $thing_uri },
-        { key => 'uri' },
+        { guid => $thing_guid },
+        { key => 'guid' },
     );
 
     my $stars_rs = $thing->stars->search(

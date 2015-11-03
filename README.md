@@ -4,7 +4,7 @@ A generic (and somewhat naïve) webservice for "stars" (a.k.a. faves, likes, ++s
 
 By running your own Starble service, you can let people stick stars onto other things of yours. Users need not manually authenticate prior to starring things, and Starble offers no outlet for authentication anyway.
 
-I currently use Starble for blog posts, but it could also fit anything that uses globally unique identifiers, be they URIs or GUIDs or what have you.
+I currently use Starble for blog posts, but it could also fit anything that uses globally unique identifiers (GUIDs).
 
 In theory, one could run a global Starble service that would let anyone apply Starble to thing-collections, allowing vistors to attach stars to them. I wouldn't know how to do that yet, but I would bet you a dollar that it's possible, and I intend to bend my mind in this direction eventually.
 

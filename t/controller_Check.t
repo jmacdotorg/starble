@@ -19,29 +19,32 @@ ok( my $mech = Test::WWW::Mechanize::Catalyst->new(catalyst_app => 'Starble'), '
 
 my $schema = StarbleTest->init_schema;
 
-$mech->get_ok( '/star/count?thing=http%3A%2F%2Fexample.com%2Ffoo' );
+$mech->get_ok( '/star/count?thing=343EE14A-8243-11E5-A92D-D7D8146448B6' );
 is ( get_result(), 3 );
 
-$mech->get_ok( '/star/check?thing=http%3A%2F%2Fexample.com%2Ffoo' );
+$mech->get_ok( '/star/check?thing=343EE14A-8243-11E5-A92D-D7D8146448B6' );
 is ( get_result(), 0 );
 
-$mech->get_ok( '/star/toggle?thing=http%3A%2F%2Fexample.com%2Ffoo' );
+$mech->get_ok( '/star/toggle?thing=343EE14A-8243-11E5-A92D-D7D8146448B6' );
 is ( get_result(), 1 );
 
-$mech->get_ok( '/star/count?thing=http%3A%2F%2Fexample.com%2Ffoo' );
+$mech->get_ok( '/star/count?thing=343EE14A-8243-11E5-A92D-D7D8146448B6' );
 is ( get_result(), 4 );
 
-$mech->get_ok( '/star/check?thing=http%3A%2F%2Fexample.com%2Ffoo' );
+$mech->get_ok( '/star/check?thing=343EE14A-8243-11E5-A92D-D7D8146448B6' );
 is ( get_result(), 1 );
 
-$mech->get_ok( '/star/toggle?thing=http%3A%2F%2Fexample.com%2Ffoo' );
+$mech->get_ok( '/star/toggle?thing=343EE14A-8243-11E5-A92D-D7D8146448B6' );
 is ( get_result(), 1 );
 
-$mech->get_ok( '/star/check?thing=http%3A%2F%2Fexample.com%2Ffoo' );
+$mech->get_ok( '/star/check?thing=343EE14A-8243-11E5-A92D-D7D8146448B6' );
 is ( get_result(), 0 );
 
-$mech->get_ok( '/star/count?thing=http%3A%2F%2Fexample.com%2Ffoo' );
+$mech->get_ok( '/star/count?thing=343EE14A-8243-11E5-A92D-D7D8146448B6' );
 is ( get_result(), 3 );
+
+$mech->get( '/star/count?thing=this-is-not-a-valid-guid' );
+is ( $mech->status, '400' );
 
 done_testing();
 
